@@ -118,6 +118,7 @@ public class WorkoutService {
         int trainedDays = daysTrained.size();
 
         List<Goal> goals = goalService.getGoalsByUserId(user);
+        System.out.println("\n--- Goal ---");
         if (!goals.isEmpty()) {
             for (Goal goal : goals) {
                 LocalDate targetDate = goalService.getTargetDate(goal); 
@@ -136,13 +137,13 @@ public class WorkoutService {
                 targetDays = Math.max(targetDays, 1);
 
                 double progress = trainedDays * 100.0 / targetDays;
-
-                System.out.println("\n--- Goal ---");
+                System.out.println("Description: " + goal.getDescription());
                 System.out.println("Start date: " + startDate);
                 System.out.println("Target date: " + targetDate);
                 System.out.println("Target days: " + targetDays);
                 System.out.printf("Progress: %.2f%%\n", progress);
-                System.out.println(progress >= 100 ? "Goal achieved!" : "Keep going!!!!!");                       
+                System.out.println(progress >= 100 ? "Goal achieved!" : "Keep going!!!!!");    
+                System.out.printf("\n");                   
             }
         } else {
             System.out.println("No goal set.");
